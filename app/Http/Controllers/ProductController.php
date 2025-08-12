@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ProductController extends Controller
 {
@@ -34,20 +35,20 @@ class ProductController extends Controller
     {
         $request -> validate([
             "name" => "required",
-            "price" => "required"
+            "price" => "required|numeric|gt:0"
         ]);
 
-        dd($request->all());
         // here will be the code to call the model and save it to the database
+        return view('product.success');
     }
     
-    public function show(string $id) : View
+    public function show(string $id) : View | RedirectResponse
     {
         $viewData = [];
         $product = collect(ProductController::$products)->firstWhere('id', $id);
         
         if (!$product) {
-            abort(404);
+            return redirect()->route('home.index');
         }
         
         $viewData["title"] = $product["name"]." - Online Store";
