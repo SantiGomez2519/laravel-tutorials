@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pilot;
 use App\Http\Requests\StorePilotRequest;
-use Illuminate\View\View;
+use App\Models\Pilot;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class PilotController extends Controller
 {
+    public function home(): View
+    {
+        return view('pilot.home');
+    }
+
     public function index(): View
     {
         $viewData = [];
@@ -46,5 +51,3 @@ class PilotController extends Controller
         return view('pilot.stats')->with('viewData', $viewData);
     }
 }
-
-

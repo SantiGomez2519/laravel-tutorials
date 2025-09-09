@@ -13,7 +13,6 @@ class Pilot extends Model
      * $this->city - string - The origin city of the pilot (LA or Tokio).
      * $this->nitro_level - int - The nitro level of the pilot.
      */
-
     protected $fillable = [
         'name',
         'city',
@@ -55,5 +54,3 @@ class Pilot extends Model
         $this->attributes['nitro_level'] = $nitroLevel;
     }
 }
-
-
